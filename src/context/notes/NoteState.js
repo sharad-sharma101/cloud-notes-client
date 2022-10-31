@@ -2,7 +2,10 @@ import NoteContext from "./noteContext";
 import React , { useState } from "react";
 
 const NoteState = (props) => {
-  const host = "http://localhost:5000"
+   //const host = "http://localhost:5000"
+  //const host = "mongodb+srv://sharad-sharma-101:04101998@cluster0.c9ewuuf.mongodb.net/?retryWrites=true"   
+  //const host = "https://api.render.com/deploy/srv-cdf8l3da4992md4814l0?key=EMzfbt_WZLQ"
+  const host = "https://cloud-notes-backend.onrender.com";
   const notesInitial = []
   const [notes, setNotes] = useState(notesInitial)
 
@@ -19,7 +22,7 @@ const NoteState = (props) => {
     });
     const json = await response.json()
     setNotes(json)
-  }
+  } 
 
        // Add a Note
   const addNote = async (title, description, tag) => {
