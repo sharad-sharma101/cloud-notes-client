@@ -2,11 +2,12 @@ import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../img/style.css'
 
-const Signup = () => {
+const Signup = (props) => {
         const [credentials, setCredentials] = useState({name:"" , email: "", password: "", cpassword:""}) 
         let history = useNavigate();
     
         const handleSubmit = async (e) => {
+            props.showAlert("wait few second for your application to succesed","primary");
             e.preventDefault();
             const {name,email,password} = credentials;
             const response = await fetch("https://cloud-notes-backend.onrender.com/api/auth/createuser", {
@@ -20,11 +21,13 @@ const Signup = () => {
             console.log(json);
             if (json.success){
                 // Save the auth token and redirect
+                props.showAlert("congrates","success")
                 localStorage.setItem('token', json.authtoken); 
                 history("/");
     
             }
             else{
+                props.showAlert("invalid credentials ","erorr")
                 alert("Invalid credentials");
             }
         }

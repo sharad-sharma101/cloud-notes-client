@@ -1,4 +1,4 @@
-import React  from 'react';
+import React ,{useState} from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import { Home } from './components/Home';
@@ -14,24 +14,24 @@ import {
   Routes
 } from "react-router-dom";
 //import Footer from './components/Footer';
-// import Alert from './components/Alert';
+import Alert from './components/Alert';
 function App() {
-  // let [alert , setalert] = useState(null);
-  // const showAlert = (message , type)=>{
-  //   setalert({
-  //     msg : message,
-  //     type: type
-  //   })
-  //   setTimeout(() => {
-  //     setalert(null);
-  //   }, 1500);
-  // }
+  let [alert , setalert] = useState(null);
+  const showAlert = (message , type)=>{
+    setalert({
+      msg : message,
+      type: type
+    })
+    setTimeout(() => {
+      setalert(null);
+    }, 1500);
+  }
   return (
    <>
    <NoteState>
    <Router>
    <Navbar/>
-   {/* <Alert alert={alert} /> */}
+   <Alert alert={alert} />
    <div className="container">
           <Routes>
             <Route exact path="/" element=
@@ -39,9 +39,9 @@ function App() {
             </Route>
             <Route exact path="/about" element={<About  />}>
             </Route>
-            <Route exact path="/login" element={<Login  />}>
+            <Route exact path="/login" element={<Login showAlert={showAlert}  />}>
             </Route>
-            <Route exact path="/signup" element={<Signup/>}>
+            <Route exact path="/signup" element={<Signup showAlert={showAlert} />}>
             </Route>
           </Routes>
     </div>
